@@ -81,6 +81,9 @@ public class DCSystem{
 
 	public DCSystem(ArrayList<Process> system){
 		this.system = system;
+		for(Process process1: system){
+			process1.AddToSystem(this.system);
+		}
 	}
 	
 	public void AddProcess(Process process){
