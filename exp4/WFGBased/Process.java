@@ -10,10 +10,11 @@ public class Process{
 	private ArrayList<Resource> requested;
 
 
-	public Process(int priority,Site server){
-		this.id = priority;
+	public Process(int id,Site server){
+		this.id = id;
 		this.server = server;
 		this.resources = new ArrayList<>();
+		this.requested = new ArrayList<>();
 	}
 
 	public int getId(){

@@ -1,9 +1,11 @@
 package exp4;
 
 import java.util.HashSet;
-
-
+import java.util.ArrayList;
 import java.util.HashMap;
+
+import exp4.WFGBased.*;
+import exp4.WFGBased.Process;
 
 
 public class Graph<T> {
@@ -21,10 +23,8 @@ public class Graph<T> {
     }
 
     public void addEdge(T node1, T node2){
-        if(!nodes.contains(node1) || !nodes.contains(node2)){
-            System.out.println("Node not found");
-            return;
-        }
+        addNode(node1);
+        addNode(node2);
         edges.get(node1).add(node2);
     }
 
@@ -87,4 +87,22 @@ public class Graph<T> {
     public HashSet<T> GetNodes(){
         return nodes;
     }
+
+    public void printGraph(){
+        ArrayList<Integer> ids = new ArrayList<>();
+        for(T p: nodes){
+            ids.add(((Process) p).getId());
+        }
+        System.out.println("Nodes are "+ids);
+        System.out.println("Edges are ");
+        printEdges();
+    }
+
+    public void printEdges() {
+        for (T key : edges.keySet()) {
+            System.out.println("Node: " + ((Process) key).getId());
+            System.out.println("Edges: " + edges.get(key));
+        }
+    }
+    
 }

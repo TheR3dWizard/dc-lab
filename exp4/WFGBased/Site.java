@@ -14,8 +14,9 @@ public class Site {
 
 
     public void RequestResource(Process p,Resource r){
+        System.out.println("Process "+p.getId()+" requests resource "+r.GetID());
         if(r.isHeld()){
-            System.out.println(r+" is already being used by "+r.GetProcess()+ "\n Deadlock Detection Started");
+            System.out.println("Resource "+r.GetID()+" is already being used by process "+r.GetProcess().getId()+ " so Deadlock Detection Started");
             wfg.addEdge(p, r.GetProcess());
             p.AddRequest(r);
             DetectDeadlock();
@@ -23,9 +24,13 @@ public class Site {
         }
         if(!p.SameSystem(this)){
             pex.Allocate(r);
+            r.AllocateTo(pex);
+            System.out.println("Allocated to process in other site");
         }
         else{
             p.Allocate(r);
+            r.AllocateTo(p);
+            System.out.println("Allocated to process in same site");
         }
 
     }
@@ -38,6 +43,7 @@ public class Site {
                 boolean check = true;
                 for(Resource res: p.GetResources()){
                     if(proc.WaitingOn(res)){
+                        System.out.println("Process "+ proc.getId()+" waiting resource "+res.GetID()+" from process "+p);
                         check = false;
                     }
                 }
@@ -60,5 +66,8 @@ public class Site {
         }
     }
 
+        public Graph<Process> getGraph(){
+            return wfg;
+        }
 
 }
