@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 
 
-class Process{
+public class Process{
 	private int id;
 	public Site server;
 	public ArrayList<Resource> resources;

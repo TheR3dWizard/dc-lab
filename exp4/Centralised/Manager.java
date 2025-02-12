@@ -2,6 +2,8 @@ package exp4.Centralised;
 
 import java.util.ArrayList;
 
+import exp4.Graph;
+
 public class Manager {
     public ArrayList<Site> sites;
 

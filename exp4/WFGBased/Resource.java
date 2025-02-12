@@ -1,4 +1,4 @@
-package exp4.Centralised;
+package exp4.WFGBased;
 
 public class Resource {
     private int id;
